@@ -1,5 +1,7 @@
 package com.medhead.hospital.entity;
 
+import org.springframework.boot.context.properties.bind.Name;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,18 +10,21 @@ public class Hospital {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @Column(name="OrganisationName")
+    private String organisationName;
     private String address1;
     private String address2;
     private String address3;
     private String city;
     private String county;
+    @Column(name="PostCode")
     private String postCode;
     private String latitude;
     private String longitude;
 
-    public Hospital(Integer id, String address1, String address2, String address3, String city, String county, String postCode, String latitude, String longitude) {
+    public Hospital(Integer id,String organisationName, String address1, String address2, String address3, String city, String county, String postCode, String latitude, String longitude) {
         this.id = id;
+        this.organisationName = organisationName;
         this.address1 = address1;
         this.address2 = address2;
         this.address3 = address3;
@@ -39,6 +44,14 @@ public class Hospital {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getOrganisationName() {
+        return organisationName;
+    }
+
+    public void setOrganisationName(String organisationName) {
+        this.organisationName = organisationName;
     }
 
     public String getAddress1() {
