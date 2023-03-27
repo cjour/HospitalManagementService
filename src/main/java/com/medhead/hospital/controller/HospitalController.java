@@ -1,6 +1,8 @@
 package com.medhead.hospital.controller;
 
 import com.medhead.hospital.entity.Hospital;
+import com.medhead.hospital.entity.Pathology;
+import com.medhead.hospital.repository.PathologyRepository;
 import com.medhead.hospital.service.HospitalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,9 @@ public class HospitalController {
     @Autowired
     private HospitalService hospitalService;
 
+    @Autowired
+    private PathologyRepository pathologyRepository;
+
     @GetMapping("/hospital/list")
     public List<Hospital> findAll() {
         List<Hospital> hospitals = hospitalService.findAll();
@@ -28,11 +33,14 @@ public class HospitalController {
     @GetMapping("/hospital/{id}")
     public Optional<Hospital> findById(@PathVariable("id") Integer id) {
         Optional<Hospital> hospital = hospitalService.findById(id);
-        LOGGER.info(
-                "Name : " + hospital.get().getOrganisationName()
-                + " Latitude : " + hospital.get().getLatitude()
-                + " Longitude : " + hospital.get().getLongitude()
-        );
+        LOGGER.info("Clément" + hospital.toString());
         return hospitalService.findById(id);
+    }
+
+    @GetMapping("/pathology/{id}")
+    public Optional<Pathology> findByIdentifier(@PathVariable("id") Integer id) {
+        Optional<Pathology> hospital = pathologyRepository.findById(id);
+        LOGGER.info("Clément" + hospital.toString());
+        return pathologyRepository.findById(id);
     }
 }
