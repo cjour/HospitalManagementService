@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IHospitalService {
+    List<Hospital> findBySpeciality(String pathology);
+
     List<Hospital> findAll();
-    Optional<Hospital> findById(Integer id);
 }

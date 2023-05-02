@@ -1,12 +1,14 @@
 package com.medhead.hospital.service;
 
 import com.medhead.hospital.entity.Hospital;
+import com.medhead.hospital.entity.Pathology;
 import com.medhead.hospital.repository.HospitalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HospitalService implements IHospitalService {
@@ -15,12 +17,21 @@ public class HospitalService implements IHospitalService {
     private HospitalRepository hospitalRepository;
 
     @Override
-    public List<Hospital> findAll() {
-        return hospitalRepository.findAll();
+    public List<Hospital> findBySpeciality(String speciality) {
+        List<Hospital> hospitals = hospitalRepository.findAll();
+        List<Hospital> pertinentHospitals = new ArrayList<>();
+        for (Hospital hospital : hospitals) {
+            for (Pathology pathology: hospital.getPathologies()) {
+               if (pathology.getName().equals(speciality)) {
+                    pertinentHospitals.add(hospital);
+               }
+            }
+        }
+        return pertinentHospitals;
     }
 
     @Override
-    public Optional<Hospital> findById(Integer id) {
-        return hospitalRepository.findById(id);
+    public List<Hospital> findAll() {
+        return hospitalRepository.findAll();
     }
 }

@@ -12,15 +12,12 @@ public class Pathology {
     @Column(name="pathologies")
     private String name;
 
-    public Pathology(Integer id,
-                     String name
-                     ) {
+    public Pathology(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Pathology() {
-    }
+    public Pathology() {}
 
     public Integer getId() {
         return id;
