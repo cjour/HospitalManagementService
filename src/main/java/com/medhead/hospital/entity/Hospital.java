@@ -24,18 +24,19 @@ public class Hospital {
     @JoinColumn(name = "hospital_id")
     private List<Pathology> pathologies;
 
-    public Hospital(Integer id,
-                    String organisationName,
-                    String address1,
-                    String address2,
-                    String address3,
-                    String city,
-                    String county,
-                    String postCode,
-                    String latitude,
-                    String longitude,
-                    List<Pathology> pathologies
-                    ) {
+    public Hospital(
+            Integer id,
+            String organisationName,
+            String address1,
+            String address2,
+            String address3,
+            String city,
+            String county,
+            String postCode,
+            String latitude,
+            String longitude,
+            List<Pathology> pathologies
+    ) {
         this.id = id;
         this.organisationName = organisationName;
         this.address1 = address1;
@@ -49,8 +50,7 @@ public class Hospital {
         this.pathologies = pathologies;
     }
 
-    public Hospital() {
-    }
+    public Hospital() {}
 
     public Integer getId() {
         return id;

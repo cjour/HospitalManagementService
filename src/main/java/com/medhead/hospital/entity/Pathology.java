@@ -8,7 +8,6 @@ public class Pathology {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @Column(name="pathologies")
     private String name;
 
